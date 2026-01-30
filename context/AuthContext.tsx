@@ -45,8 +45,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     if (userDoc.exists()) {
                         setUserData(userDoc.data());
                     }
-                } catch (error) {
-                    console.error("Error fetching user data:", error);
+                } catch (error: any) {
+                    // Handle permission errors gracefully - user document may not exist yet
+                    if (error?.code === 'permission-denied') {
+                        console.debug("User document not accessible - Firestore rules may need updating");
+                    } else {
+                        console.warn("Could not fetch user profile:", error?.message || error);
+                    }
                 }
             } else {
                 setUser(null);
