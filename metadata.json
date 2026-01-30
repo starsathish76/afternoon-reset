@@ -1,0 +1,7 @@
+{
+  "name": "Afternoon Reset",
+  "description": "A calm, ritual-based snack ordering app designed to help office workers reset mentally during the afternoon slump.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
